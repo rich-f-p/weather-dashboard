@@ -30,8 +30,11 @@ function gpsApi(link) {
         data[0].name
         data[0].state
         data[0].country
+        console.log(data)
         weatherUrl(lon,lat);
         weatherApi(weatherLink);
+        currentDisplay(data);
+
     })
 }
 //generate link for weather forcast
@@ -41,16 +44,31 @@ function weatherUrl(lon,lat){
     console.log(weatherLink);
 }
 //fetch weather forecast data
+var iconNum = '';
+var iconEl;
 function weatherApi(link){
     fetch(link)
     .then(function(response){
         return response.json();
-    }).then(function(data){
-        console.log(data);
+    }).then(function(weatherData){
+        console.log(weatherData);
         //console.log(data.current.temp)
-        //console.log(data.current.weather[0].icon)
+        //data.current.weather[0].icon
         //check notes for data 
+        //iconNum = weatherData.current.weather[0].icon
+        //iconEl = $('<img src="http://openweathermap.org/img/wn/' + iconNum + '@2x.png" width="50px" height="50px" alt="">')
     })
 }
+// display name and current date
+var cityEl = $('#city');
+function currentDisplay(data,){
+    var currentEl = $('<div id="today" class="container card">')
+    var nameEl = $('<h2>')
+    var date = moment().format('L');
+    nameEl.text(data[0].name + ' ' + date + ' ');
+    nameEl.appendTo(currentEl);
 
+    currentEl.appendTo(cityEl);
+}
+console.log(moment().format('L'))
 $('#search').on('submit',search);
