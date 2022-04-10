@@ -1,0 +1,40 @@
+.veryHigh{
+    border: solid;
+    border-radius: 5px;
+    background-color: rgb(227,38,54);
+    color: white;
+    border-color: rgb(227,38,54);
+    padding: 2px;
+}
+.low{
+    background-color: rgb(76,230,0);
+    color: black;
+    border: solid;
+    border-color: rgb(76,230,0);
+    border-radius: 5px;
+    padding: 2px;
+}
+.moderate{
+    background-color: rgb(255,255,102);
+    color: black;
+    border: solid;
+    border-color: rgb(255,255,102);
+    border-radius: 5px;
+    padding: 2px;
+}
+.high{
+    background-color: rgb(255,187,51);
+    color: white;
+    border: solid;
+    border-color: rgb(255,187,51);
+    border-radius: 5px;
+    padding: 2px;
+}
+.extreme{
+    background-color: rgb(225,77,255);
+    color: white;
+    border: solid;
+    border-color: rgb(225,77,255);
+    border-radius: 5px;
+    padding: 2px;
+}

@@ -53,6 +53,7 @@ function weatherApi(link){
     }).then(function(weatherData){
         console.log(weatherData);
         insertIcon(weatherData);
+        currentWeather(weatherData);
         fiveDayForecast(weatherData);
         //console.log(data.current.temp)
         //data.current.weather[0].icon
@@ -112,4 +113,38 @@ function fiveDayForecast(weatherData){
         cardEl.appendTo(futureDisplay);
         }
     }
+// display the weather conditions of today
+function currentWeather(weatherData){
+    var temp = 'Temperature: ' + weatherData.current.temp + '℉';
+    currTemp = $('<p>')
+    currTemp.text(temp)
+    currTemp.appendTo(currentEl);
+
+    var hum = 'Humidity' + weatherData.current.humidity + '%';
+    currHum = $('<p>')
+    currHum.text(hum)
+    currHum.appendTo(currentEl);
+    
+    var wind = 'Wind Speed: ' + weatherData.current.wind_speed + ' MPH';
+    currWind = $('<p>')
+    currWind.text(wind)
+    currWind.appendTo(currentEl);
+    
+    var uvi = weatherData.current.uvi;
+    var title = $('<p>')
+    currUvi = $('<i>').text(uvi);
+    if (uvi<2){
+        currUvi.addClass('low');
+    }else if (uvi>=2 && uvi<6){
+        currUvi.addClass('moderate');
+    }else if (uvi>=6 && uvi<8){
+        currUvi.addClass('high');
+    }else if (uvi>=8 && uvi<11){
+        currUvi.addClass('veryHigh');
+    }else {
+        currUvi.addClass('extreme');
+    }
+    title.text('UV Index: ').append(currUvi)
+    title.appendTo(currentEl);
+}
 $('#search').on('submit',search);
