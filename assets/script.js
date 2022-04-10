@@ -53,6 +53,7 @@ function weatherApi(link){
     }).then(function(weatherData){
         console.log(weatherData);
         insertIcon(weatherData);
+        fiveDayForecast(weatherData);
         //console.log(data.current.temp)
         //data.current.weather[0].icon
         //check notes for data 
@@ -67,8 +68,8 @@ var nameEl = $('<h2>');
 function currentDisplay(data,){
     currentEl = $('<div id="today" class="container card">')
     nameEl = $('<h2>')
-    var date = moment().format('L');
-    nameEl.text(data[0].name + ' ' + date + ' ');
+    var today = moment().format('L');
+    nameEl.text(data[0].name + ' ' + today + ' ');
     nameEl.appendTo(currentEl);
 
     currentEl.appendTo(cityEl);
@@ -78,7 +79,37 @@ function insertIcon(weatherData){
     iconNum = weatherData.current.weather[0].icon
     iconEl = $('<img src="http://openweathermap.org/img/wn/' + iconNum + '@2x.png" width="50px" height="50px" alt="">')
     iconEl.appendTo(nameEl);
-    console.log(iconEl);
 }
+// display cards for five day forcast
+function fiveDayForecast(weatherData){
+    var fiveHeaderText = $('<h3>');
+    fiveHeaderText.text('Five Day Forecast:');
+    fiveHeaderText.appendTo(cityEl);
+    var futureDisplay =$('<div id="future" class="container row">');
+        futureDisplay.appendTo(cityEl);
+    for(i=0;i<5;i++){
+        var cardEl = $('<div id="day" class="d-flex container card col-2">');
+        var date = $('<p>');
+        const newDate = moment().add(i+1,'day').format('L');
+        date.text(newDate);
+        date.appendTo(cardEl);
 
+        var icon = weatherData.daily[i].weather[0].icon;
+        var dailyIcon = $('<img src="http://openweathermap.org/img/wn/' + icon + '@2x.png" width="50px" height="50px" alt="">');
+        dailyIcon.appendTo(cardEl);
+
+        var dailyWeather = $('<p>');
+        var dailyTemp = 'temp: ' + weatherData.daily[i].temp.day;
+        dailyWeather.text(dailyTemp);
+        dailyWeather.appendTo(cardEl);
+
+        var dailyHumidity = $('<p>');
+        var humidity = 'humidity: ' + weatherData.daily[i].humidity + '%';
+        dailyHumidity.text(humidity);
+        dailyHumidity.appendTo(cardEl);
+
+
+        cardEl.appendTo(futureDisplay);
+        }
+    }
 $('#search').on('submit',search);
