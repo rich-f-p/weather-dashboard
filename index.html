@@ -15,9 +15,11 @@
               <h1 class="display-4">Weather Dashboard</h1>
               <p class="lead"></p>
             </div>
-          </div>
+        </div>
           <!-- input -->
+        <section class="d-flex">
           <section class="container col-3">
+            <h2>Search for a city:</h2>
             <div class="input-group mb-3 ">
               <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
               <div class="input-group-append">
@@ -36,6 +38,11 @@
               </ul>
             </div>
           </section>
+          <section id="city" class="col-9">
+            <div id="today" class="container card"></div>
+            <div id="future" ></div>
+          </section>
+        </section>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
