@@ -17,12 +17,17 @@ function locationUrl(city){
     gpsLink = longLat;
 }
 //fetch geolocation data
+var lat = '';
+var lon = '';
 function gpsApi(link) {
     fetch(link)
     .then(function(response) {
         return response.json();
     }).then(function(data) {
         console.log(data);
+        lat = data[0].lat;
+        lon = data[0].lon;
+        
     })
 }
 
