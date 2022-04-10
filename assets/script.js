@@ -52,6 +52,7 @@ function weatherApi(link){
         return response.json();
     }).then(function(weatherData){
         console.log(weatherData);
+        insertIcon(weatherData);
         //console.log(data.current.temp)
         //data.current.weather[0].icon
         //check notes for data 
@@ -61,14 +62,23 @@ function weatherApi(link){
 }
 // display name and current date
 var cityEl = $('#city');
+var currentEl = $('<div id="today" class="container card">')
+var nameEl = $('<h2>');
 function currentDisplay(data,){
-    var currentEl = $('<div id="today" class="container card">')
-    var nameEl = $('<h2>')
+    currentEl = $('<div id="today" class="container card">')
+    nameEl = $('<h2>')
     var date = moment().format('L');
     nameEl.text(data[0].name + ' ' + date + ' ');
     nameEl.appendTo(currentEl);
 
     currentEl.appendTo(cityEl);
 }
-console.log(moment().format('L'))
+// insert icon to current day car 
+function insertIcon(weatherData){
+    iconNum = weatherData.current.weather[0].icon
+    iconEl = $('<img src="http://openweathermap.org/img/wn/' + iconNum + '@2x.png" width="50px" height="50px" alt="">')
+    iconEl.appendTo(nameEl);
+    console.log(iconEl);
+}
+
 $('#search').on('submit',search);
