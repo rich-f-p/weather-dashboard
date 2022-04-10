@@ -24,11 +24,21 @@ function gpsApi(link) {
     .then(function(response) {
         return response.json();
     }).then(function(data) {
-        console.log(data);
+        // console.log(data);
         lat = data[0].lat;
         lon = data[0].lon;
+        data[0].name
+        data[0].state
+        data[0].country
+        weatherUrl(lon,lat);
         
     })
+}
+//generate link for weather forcast
+var weatherLink = '';
+function weatherUrl(lon,lat){
+    weatherLink = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&units=imperial&exclude=minutely,hourly&appid='+apikey;
+    console.log(weatherLink);
 }
 
 
