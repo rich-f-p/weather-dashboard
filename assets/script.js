@@ -31,7 +31,7 @@ function gpsApi(link) {
         data[0].state
         data[0].country
         weatherUrl(lon,lat);
-        
+        weatherApi(weatherLink);
     })
 }
 //generate link for weather forcast
@@ -40,6 +40,17 @@ function weatherUrl(lon,lat){
     weatherLink = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&units=imperial&exclude=minutely,hourly&appid='+apikey;
     console.log(weatherLink);
 }
-
+//fetch weather forecast data
+function weatherApi(link){
+    fetch(link)
+    .then(function(response){
+        return response.json();
+    }).then(function(data){
+        console.log(data);
+        //console.log(data.current.temp)
+        //console.log(data.current.weather[0].icon)
+        //check notes for data 
+    })
+}
 
 $('#search').on('submit',search);
