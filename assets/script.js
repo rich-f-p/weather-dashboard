@@ -8,6 +8,7 @@ var inputEl = $('#userInput');
 var gpsLink = '';
 function search(event){
     event.preventDefault();
+    clearContent();
     locationUrl(inputEl.val());
     gpsApi(gpsLink);
 }
@@ -129,7 +130,7 @@ function currentWeather(weatherData){
     currWind = $('<p>')
     currWind.text(wind)
     currWind.appendTo(currentEl);
-    
+    //change color of uvi as a indicator
     var uvi = weatherData.current.uvi;
     var title = $('<p>')
     currUvi = $('<i>').text(uvi);
@@ -146,5 +147,10 @@ function currentWeather(weatherData){
     }
     title.text('UV Index: ').append(currUvi)
     title.appendTo(currentEl);
+}
+//clear previous content from screen, so that new content can be displayed 
+function clearContent(){
+    var clear = $('#city')
+    clear.empty();
 }
 $('#search').on('submit',search);
