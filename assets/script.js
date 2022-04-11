@@ -168,7 +168,12 @@ function grabStore(){
 // send array to local storage and regulate array length
 var searches = [];
 function send(input){
-    searches.unshift(input)
+    if(searches.indexOf(input) != -1){ // it return 2 because Mike exist at index 2
+        console.log("Employee found!");
+      } else{
+        searches.unshift(input)
+        console.log("Employee not found!")
+      }
     //refreshes list with every search
     createList(searches);
     if(searches.length>5){
