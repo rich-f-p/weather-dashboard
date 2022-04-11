@@ -6,6 +6,7 @@ const todayEl = $('#today');
 const futureEl = $('#future');
 var inputEl = $('#userInput');
 var gpsLink = '';
+
 function search(event){
     event.preventDefault();
     clearContent();
@@ -35,7 +36,7 @@ function gpsApi(link) {
         weatherUrl(lon,lat);
         weatherApi(weatherLink);
         currentDisplay(data);
-
+        send(data[0].name)
     })
 }
 //generate link for weather forcast
@@ -148,9 +149,31 @@ function currentWeather(weatherData){
     title.text('UV Index: ').append(currUvi)
     title.appendTo(currentEl);
 }
-//clear previous content from screen, so that new content can be displayed 
+//clear previous content from screen, so that new content can be displayed upon click
 function clearContent(){
     var clear = $('#city')
     clear.empty();
 }
+//grab array from local storage
+var storage = []
+function grabStore(){
+    if (localStorage.getItem('history')){
+    storage = JSON.parse(localStorage.getItem('history'))
+    searches = storage
+
+    }
+    console.log(searches)
+
+}
+// send array to local storage and regulate array length
+var searches = [];
+function send(input){
+    //if (!searches)
+    searches.unshift(input)
+    if(searches.length>5){
+        searches.pop()
+    }
+    localStorage.setItem('history',JSON.stringify(searches))
+}
+grabStore();
 $('#search').on('submit',search);
