@@ -10,6 +10,7 @@ var gpsLink = '';
 function search(event){
     event.preventDefault();
     clearContent();
+    grabStore();
     locationUrl(inputEl.val());
     gpsApi(gpsLink);
 }
@@ -160,20 +161,42 @@ function grabStore(){
     if (localStorage.getItem('history')){
     storage = JSON.parse(localStorage.getItem('history'))
     searches = storage
-
     }
-    console.log(searches)
-
+    //generates list when arriving to page
+    createList(searches);
 }
 // send array to local storage and regulate array length
 var searches = [];
 function send(input){
-    //if (!searches)
     searches.unshift(input)
+    //refreshes list with every search
+    createList(searches);
     if(searches.length>5){
         searches.pop()
     }
     localStorage.setItem('history',JSON.stringify(searches))
 }
+//create list of previous searches
+var list = $('#listSearches')
+function createList(searches){
+    list.empty()
+    $.each(searches, function(i, value){
+        var li = $('<li class="list-group-item">');
+        li.text(value)
+        li.attr('id','button')
+        li.attr('data',value)
+        li.appendTo(list);
+    /* console.log(li.attr('data')) */})
+}
+// add click function to list elements, so data can be retrieved  
+$('#listSearches').on('click',function(event){
+    event.stopPropagation();
+    //console.log(event)
+    var select = $(event.target)
+    var wool = select.attr('data') 
+    console.log(wool)
+   // var pro = button.text();
+    //console.log(pro);
+})
 grabStore();
 $('#search').on('submit',search);
