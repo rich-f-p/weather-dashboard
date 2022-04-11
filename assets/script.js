@@ -185,8 +185,7 @@ function createList(searches){
         li.text(value)
         li.attr('id','button')
         li.attr('data',value)
-        li.appendTo(list);
-    /* console.log(li.attr('data')) */})
+        li.appendTo(list);})
 }
 // add click function to list elements, so data can be retrieved  
 $('#listSearches').on('click',function(event){
@@ -195,8 +194,18 @@ $('#listSearches').on('click',function(event){
     var select = $(event.target)
     var wool = select.attr('data') 
     console.log(wool)
-   // var pro = button.text();
-    //console.log(pro);
+    loadPrevious(wool);
 })
+// when previous search list content is clicked the data for that location will be displayed 
+function loadPrevious(text){
+    //clear any content in display area
+    clearContent();
+    // grab items from local storage to update searchlist
+    grabStore();
+    //generate link to api weather information
+    locationUrl(text);
+    //find name of city, and the lonigtude + latitude
+    gpsApi(gpsLink);
+}
 grabStore();
 $('#search').on('submit',search);
