@@ -9,7 +9,7 @@ The following is an application that allows the user to search for a search, and
 * Previous list of searches
 
 ## Walkthrough
-<p align="center"><img src="./assets/images/weather-dashboard.gif"></p>
+![gif](./assets/images/Weather-dashboard.gif)
 
 ### Requirements
 * IDE capable of running HTML, CSS, and Javascript
