@@ -27,12 +27,6 @@ function gpsApi(link) {
     .then(function(response) {
         return response.json();
     }).then(function(data) {
-        // console.log(data);
-        lat = data[0].lat;
-        lon = data[0].lon;
-        data[0].name
-        data[0].state
-        data[0].country
         console.log(data)
         weatherUrl(lon,lat);
         weatherApi(weatherLink);
@@ -44,7 +38,6 @@ function gpsApi(link) {
 var weatherLink = '';
 function weatherUrl(lon,lat){
     weatherLink = 'https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&units=imperial&exclude=minutely,hourly&appid='+apikey;
-    console.log(weatherLink);
 }
 //fetch weather forecast data
 var iconNum = '';
@@ -54,15 +47,9 @@ function weatherApi(link){
     .then(function(response){
         return response.json();
     }).then(function(weatherData){
-        console.log(weatherData);
         insertIcon(weatherData);
         currentWeather(weatherData);
         fiveDayForecast(weatherData);
-        //console.log(data.current.temp)
-        //data.current.weather[0].icon
-        //check notes for data 
-        //iconNum = weatherData.current.weather[0].icon
-        //iconEl = $('<img src="http://openweathermap.org/img/wn/' + iconNum + '@2x.png" width="50px" height="50px" alt="">')
     })
 }
 // display name and current date
@@ -210,6 +197,7 @@ function loadPrevious(text){
     //find name of city, and the lonigtude + latitude
     gpsApi(gpsLink);
 }
+// display a city upon entering site
 function entryDisplay(text){
 clearContent();
 grabStore();
