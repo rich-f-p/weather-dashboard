@@ -15,21 +15,17 @@ function search(event){
 //generate url to longitude and latitude date
 function locationUrl(city){
     var longLat = 'https://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=5&appid='+apikey;
+    console.log(longLat)
     gpsLink = longLat;
 }
 //fetch geolocation data
 
 function gpsApi(link) {
-    $.ajax({
-        url: link,
-        method: 'GET',
-      }).then(function (data) {
-        console.log(data);
-    // fetch(link)
-    // .then(function(response) {
-    //     return response.json();
-    // }).then(function(data) {
-    //     console.log(data)
+    fetch(link)
+    .then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        console.log(data)
         lat = data[0].lat;
         lon = data[0].lon;
         weatherUrl(lon,lat);
@@ -60,7 +56,7 @@ function weatherApi(link){
 var cityEl = $('#city');
 var currentEl = $('<div id="today" class="container card">')
 var nameEl = $('<h2>');
-function currentDisplay(data,){
+function currentDisplay(data){
     currentEl = $('<div id="today" class="container card">')
     nameEl = $('<h2>')
     var today = moment().format('L');
@@ -201,13 +197,23 @@ function loadPrevious(text){
     //find name of city, and the lonigtude + latitude
     gpsApi(gpsLink);
 }
-// display a city upon entering site
-// function entryDisplay(text){
-// clearContent();
-// grabStore();
-// locationUrl(text);
-// gpsApi(gpsLink);
-// }
-// entryDisplay('taiwan');
+//display a city upon entering site
+function entryDisplay(text){
+clearContent();
+grabStore();
+taiwanDisplay();
+}
+function taiwanDisplay(){
+    currentEl = $('<div id="today" class="container card">')
+    nameEl = $('<h2>')
+    var today = moment().format('L');
+    nameEl.text('taiwan '+ today + ' ');
+    nameEl.appendTo(currentEl);
+    currentEl.appendTo(cityEl);
+    var taiwan = 'https://api.openweathermap.org/data/2.5/onecall?lat='+'23.59829785'+'&lon='+
+'120.83536313817521'+'&units=imperial&exclude=minutely,hourly&appid='+apikey;
+    weatherApi(taiwan);
+}
+entryDisplay('taiwan');
 grabStore();
 $('#search').on('submit',search);
