@@ -20,8 +20,11 @@ function locationUrl(city){
 //fetch geolocation data
 var lat = '';
 var lon = '';
+const agent = new https.Agent({
+    rejectUnauthorized: false,
+});
 function gpsApi(link) {
-    fetch(link)
+    fetch(link, {agent})
     .then(function(response) {
         return response.json();
     }).then(function(data) {
