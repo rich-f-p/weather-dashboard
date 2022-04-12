@@ -19,7 +19,6 @@ function locationUrl(city){
     gpsLink = longLat;
 }
 //fetch geolocation data
-
 function gpsApi(link) {
     fetch(link)
     .then(function(response) {
@@ -214,6 +213,6 @@ function taiwanDisplay(){
 '120.83536313817521'+'&units=imperial&exclude=minutely,hourly&appid='+apikey;
     weatherApi(taiwan);
 }
-entryDisplay('taiwan');
+entryDisplay();
 grabStore();
 $('#search').on('submit',search);
