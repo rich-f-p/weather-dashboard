@@ -14,17 +14,13 @@ function search(event){
 }
 //generate url to longitude and latitude date
 function locationUrl(city){
-    var longLat = 'http://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=5&appid='+apikey;
+    var longLat = 'https://api.openweathermap.org/geo/1.0/direct?q='+city+'&limit=5&appid='+apikey;
     gpsLink = longLat;
 }
 //fetch geolocation data
-var lat = '';
-var lon = '';
-const agent = new https.Agent({
-    rejectUnauthorized: false,
-});
+
 function gpsApi(link) {
-    fetch(link, {agent})
+    fetch(link)
     .then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -71,7 +67,7 @@ function currentDisplay(data,){
 // insert icon to current day car 
 function insertIcon(weatherData){
     iconNum = weatherData.current.weather[0].icon
-    iconEl = $('<img src="http://openweathermap.org/img/wn/' + iconNum + '@2x.png" width="50px" height="50px" alt="">')
+    iconEl = $('<img src="https://openweathermap.org/img/wn/' + iconNum + '@2x.png" width="50px" height="50px" alt="">')
     iconEl.appendTo(nameEl);
 }
 // display cards for five day forcast
@@ -89,7 +85,7 @@ function fiveDayForecast(weatherData){
         date.appendTo(cardEl);
 
         var icon = weatherData.daily[i].weather[0].icon;
-        var dailyIcon = $('<img src="http://openweathermap.org/img/wn/' + icon + '@2x.png" width="50px" height="50px" alt="">');
+        var dailyIcon = $('<img src="https://openweathermap.org/img/wn/' + icon + '@2x.png" width="50px" height="50px" alt="">');
         dailyIcon.appendTo(cardEl);
 
         var dailyWeather = $('<p>');
