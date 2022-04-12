@@ -78,7 +78,7 @@ function fiveDayForecast(weatherData){
     var futureDisplay =$('<div id="future" class="container row">');
         futureDisplay.appendTo(cityEl);
     for(i=0;i<5;i++){
-        var cardEl = $('<div id="day" class="d-flex container card col-2">');
+        var cardEl = $('<div id="day" class="d-flex container card col-2 bg-primary text-white">');
         var date = $('<p>');
         const newDate = moment().add(i+1,'day').format('L');
         date.text(newDate);
