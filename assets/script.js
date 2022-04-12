@@ -26,6 +26,8 @@ function gpsApi(link) {
         return response.json();
     }).then(function(data) {
         console.log(data)
+        lat = data[0].lat;
+        lon = data[0].lon;
         weatherUrl(lon,lat);
         weatherApi(weatherLink);
         currentDisplay(data);
