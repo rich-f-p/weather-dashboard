@@ -174,11 +174,11 @@ function send(input){
         searches.unshift(input)
         console.log("Employee not found!")
       }
-    //refreshes list with every search
-    createList(searches);
     if(searches.length>5){
         searches.pop()
     }
+    //refreshes list with every search
+    createList(searches);
     localStorage.setItem('history',JSON.stringify(searches))
 }
 //create list of previous searches
