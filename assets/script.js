@@ -24,7 +24,7 @@ function gpsApi(link) {
         url: link,
         method: 'GET',
       }).then(function (data) {
-        console.log(response[0]);
+        console.log(data);
     // fetch(link)
     // .then(function(response) {
     //     return response.json();
@@ -202,12 +202,12 @@ function loadPrevious(text){
     gpsApi(gpsLink);
 }
 // display a city upon entering site
-function entryDisplay(text){
-clearContent();
-grabStore();
-locationUrl(text);
-gpsApi(gpsLink);
-}
-entryDisplay('taiwan');
+// function entryDisplay(text){
+// clearContent();
+// grabStore();
+// locationUrl(text);
+// gpsApi(gpsLink);
+// }
+// entryDisplay('taiwan');
 grabStore();
 $('#search').on('submit',search);
