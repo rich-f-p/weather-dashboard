@@ -169,10 +169,8 @@ function grabStore(){
 var searches = [];
 function send(input){
     if(searches.indexOf(input) != -1){ // it return 2 because Mike exist at index 2
-        console.log("Employee found!");
       } else{
         searches.unshift(input)
-        console.log("Employee not found!")
       }
     if(searches.length>5){
         searches.pop()
@@ -212,5 +210,12 @@ function loadPrevious(text){
     //find name of city, and the lonigtude + latitude
     gpsApi(gpsLink);
 }
+function entryDisplay(text){
+clearContent();
+grabStore();
+locationUrl(text);
+gpsApi(gpsLink);
+}
+entryDisplay('taiwan');
 grabStore();
 $('#search').on('submit',search);
