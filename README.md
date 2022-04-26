@@ -1,4 +1,4 @@
-# weather-dashboard
+# weather-dashboard     [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ## Description 
 The following is an application that allows the user to search for a search, and then recieve weather conditions for that location. The dashboard will give information of the current day and a five day forecast. Information includes name of the city, date, icon representing weather condition, temperature, humidity, wind speed, and UV index. Along the left is a list of previous search locations. Clicking these will allow the user to redisplay that locations weather conditions. Only one city's weather conditions will display at a time. 
 
@@ -37,6 +37,9 @@ The following is an application that allows the user to search for a search, and
 * Bootstrap
 * Jquery
 * Open Weather OneCall API and Geocoding API
+
+### License
+* [License: MIT](https://opensource.org/licenses/MIT) : click to learn more
 
 ### Author
 Richard Ferry
